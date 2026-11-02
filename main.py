@@ -1,3 +1,14 @@
+def on_button_pressed_a():
+    radio.send_value("Vorwaerts", pins.analog_read_pin(AnalogReadWritePin.P10))
+    radio.send_value("Lenkung", 0)
+input.on_button_pressed(Button.A, on_button_pressed_a)
+
+def on_received_value(Voerwaerts, Vor):
+    global Vorw
+    Vorw = Vor
+radio.on_received_value(on_received_value)
+
+Vorw = 0
 basic.show_leds("""
     . . . . .
     . . . . .
@@ -5,14 +16,12 @@ basic.show_leds("""
     . . . . .
     . . . . .
     """)
-radio.set_group(743)
+radio.set_group(254)
 radio.set_transmit_power(7)
-radio.send_value("Vorwaerts", 0)
-radio.send_value("Lenkung", 0)
 
 def on_forever():
-    pass
+    servos.P0.run(Vorw)
+    servos.P1.run(Vorw)
 basic.forever(on_forever)
-def on_received_value(name, value):
-    pass
-radio.on_received_value(on_received_value)
+
+Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.LEFT, 0)

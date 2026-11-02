@@ -5,7 +5,10 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "pxt-sonar": "github:microsoft/pxt-sonar#v0.0.6"
+        "pxt-sonar": "github:microsoft/pxt-sonar#v0.0.6",
+        "servo": "*",
+        "radio-broadcast": "*",
+        "pxt-kitronik-move-motor": "github:kitronikltd/pxt-kitronik-move-motor#v0.4.20"
     },
     "files": [
         "main.blocks",
